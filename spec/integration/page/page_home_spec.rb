@@ -6,7 +6,7 @@ describe "Page home access" do
    end
 
    it "show page home" do
-      current_path.should eql(root_path)
+      current_path.should eqll(root_path)
    end
 
    it "displays message welcome" do
