@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "rails", "3.2.11"
+gem "jquery-rails"
 
 group :development do
    gem "pry", :require => false
@@ -17,4 +18,8 @@ end
 group :test do
    gem "factory_girl"
    gem "factory_girl-preload"
+end
+
+group :production do
+   gem "pg"
 end

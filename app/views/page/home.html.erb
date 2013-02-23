@@ -1,1 +1,46 @@
 <h1><%= t("page.home.welcome") %></h1>
+
+<div id="fb-root"></div>
+
+<%= form_tag page_path, :remote => true, :id => "page_path"  do %>
+   <p>
+      <b>www.facebook.com/</b>
+      <%= text_field_tag :name %>
+
+      <%= submit_tag 'Enviar'%>
+   </p>
+<% end %>
+
+<table class="profile">
+
+</table>
+
+<% content_for :js do %>
+
+   $("#page_path").bind("ajax:complete", function(xhr, result){   
+
+      var profile = "/";
+      profile += result.responseText;
+
+      
+         FB.api(profile, function(response){
+                     
+               $(".profile tr").remove();
+
+               $.each(response, function(key, value){
+                     if (key == "error"){
+                           $(".profile").html("<tr><td>Usuário não encontrado!</td></tr>");
+                     }else{
+                           $(".profile").append("<tr><td><b>"+key+"</b></td><td>"+value+"</td></tr>");
+                     }
+               })
+         })
+
+   });
+
+<% end %>
+
+   
+
+
+
